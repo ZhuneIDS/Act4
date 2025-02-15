@@ -1,9 +1,9 @@
-// src/models/User.js
 const mongoose = require('mongoose');
- // schema de usuario
+
+// Esquema del usuario en la base de datos
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  email: { type: String, required: true, unique: true }, // Correo electrónico del usuario (único y obligatorio)
+  password: { type: String, required: true }, // Contraseña del usuario (obligatoria)
 });
 
 module.exports = mongoose.model('User', userSchema);

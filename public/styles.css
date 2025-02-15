@@ -1,4 +1,4 @@
-/* public/css/styles.css */
+/* Estilos generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,6 +6,7 @@ body {
     background-color: #f4f4f4;
 }
 
+/* Encabezado */
 header {
     background-color: #333;
     color: #fff;
@@ -13,10 +14,12 @@ header {
     text-align: center;
 }
 
+/* Contenedor principal */
 main {
     padding: 2rem;
 }
 
+/* Estilos del formulario */
 form {
     display: flex;
     flex-direction: column;
@@ -35,6 +38,7 @@ input {
     border-radius: 4px;
 }
 
+/* Botones */
 button {
     padding: 0.5rem;
     background-color: #333;
@@ -48,6 +52,7 @@ button:hover {
     background-color: #555;
 }
 
+/* Lista de productos */
 #product-list {
     list-style-type: none;
     padding: 0;
