@@ -1,50 +1,46 @@
-// src/server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes'); // Revisar estructura
 const path = require('path');
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
+// Middleware para analizar solicitudes JSON
 app.use(express.json());
-
 
 // Servir archivos estáticos desde la carpeta "public"
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Otras rutas y configuraciones
+// Configuración de rutas de la API
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/products', require('./routes/productRoutes'));
 
-// Ruta para la raíz
+// Ruta principal que sirve el archivo HTML de la interfaz
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
-  });
+});
 
-// Conexión a la base de datos
+// Conexión a la base de datos MongoDB
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000, // debug de tiempo de espera
-    connectTimeoutMS: 30000, // debug de tiempo de espera
-    socketTimeoutMS: 45000, // debug de tiempo de espera
-
-  })
-    .then(() => console.log('Connected to MongoDB'))
+    serverSelectionTimeoutMS: 30000, // Tiempo de espera para seleccionar un servidor
+    connectTimeoutMS: 30000, // Tiempo de espera para la conexión
+    socketTimeoutMS: 45000, // Tiempo de espera del socket
+})
+    .then(() => console.log('Conectado a MongoDB'))
     .catch((err) => {
-        console.error('MongoDB connection error:');
-        console.error('- Message:', err.message); // log de mensaje de error
-        console.error('- Reason:', err.reason); // log de razón de error
-        console.error('- Code:', err.code); // log de código de error
-        console.error('- Full Error:', err); // log de error completo
-      });
+        console.error('Error en la conexión a MongoDB:');
+        console.error('- Mensaje:', err.message); // Registro del mensaje de error
+        console.error('- Razón:', err.reason); // Registro de la razón del error
+        console.error('- Código:', err.code); // Registro del código de error
+        console.error('- Detalles completos:', err); // Registro del error completo
+    });
 
-// empezar el servidor
+// Iniciar el servidor en el puerto especificado
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
 });
