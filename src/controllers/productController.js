@@ -1,7 +1,6 @@
 // src/controllers/productController.js
 const Product = require('../models/Product');
-
-// export de todos los productos
+ 
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Application</title>
     <link rel="stylesheet" href="/styles.css" />
-    <!-- Link al CSS -->
+    <!-- Enlace al CSS -->
   </head>
   <body>
     <header>
@@ -13,20 +13,23 @@
     </header>
 
     <main>
-      <!-- Form logeo -->
+      <!-- Formulario de inicio de sesión -->
       <section id="login-section">
         <h2>Login</h2>
-        <form id="login-form">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
-          <button type="submit">Login</button>
+        <form id="login-form" autocomplete="off">
+          <fieldset>
+            <legend>Iniciar sesión</legend>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+            <button type="submit">Login</button>
+          </fieldset>
         </form>
-        <p id="login-message"></p>
+        <p id="login-message" style="display: none"></p>
       </section>
 
-      <!-- Lisa de productos visibles despues de logear -->
+      <!-- Lista de productos (visible después del inicio de sesión) -->
       <section id="product-section" style="display: none">
         <h2>Products</h2>
         <ul id="product-list"></ul>
@@ -34,6 +37,6 @@
     </main>
 
     <script src="/scripts.js"></script>
-    <!-- Link al JavaScript -->
+    <!-- Enlace al JavaScript -->
   </body>
 </html>

@@ -1,5 +1,3 @@
-// public/js/script.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const loginMessage = document.getElementById('login-message');
@@ -25,24 +23,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                // guardar token en localStorage
+                // Guardar token en localStorage
                 localStorage.setItem('token', data.token);
 
-                // esconder el formulario de inicio de sesión y mostrar la sección de productos
+                // Ocultar el formulario de inicio de sesión y mostrar la sección de productos
                 loginForm.style.display = 'none';
                 productSection.style.display = 'block';
 
-                // fetch y mostrar productos
+                // Obtener y mostrar productos
                 fetchProducts();
             } else {
                 loginMessage.textContent = data.message || 'Login failed';
+                loginMessage.style.display = 'block';
             }
         } catch (error) {
             loginMessage.textContent = 'An error occurred. Please try again.';
+            loginMessage.style.display = 'block';
         }
     });
 
-    // fetch y mostrar productos
+    // Obtener y mostrar productos
     async function fetchProducts() {
         try {
             const token = localStorage.getItem('token');
@@ -56,11 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const products = await response.json();
 
             if (response.ok) {
-                // display productos
+                // Mostrar productos en la lista
                 productList.innerHTML = products
-                //funcion flecha que recibe un producto y retorna un string
-                //mapea los productos y los une con join
-                    .map(product => `<li>${product.name} - $${product.price}</li>`)
+                    .map(product => `<li>${product.name} - $${product.price.toFixed(2)}</li>`)
                     .join('');
             } else {
                 productList.innerHTML = '<li>Failed to load products.</li>';
